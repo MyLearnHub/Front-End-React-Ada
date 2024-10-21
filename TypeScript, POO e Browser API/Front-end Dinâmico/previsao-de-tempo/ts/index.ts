@@ -1,3 +1,9 @@
+import { saudacao, PI } from "./exemplo.js";
+
+saudacao();
+
+console.log(PI);
+
 const form = document.querySelector("#search-form > form");
 const input: HTMLInputElement | null =
   document.querySelector("#input-localizacao");

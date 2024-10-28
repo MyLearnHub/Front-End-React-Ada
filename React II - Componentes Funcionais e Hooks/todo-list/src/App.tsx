@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { Header } from "./components/Header/Header";
 import "./styles/global.css";
 import { Tasks } from "./components/Tasks/Tasks";
+import { Refs } from "./components/Concepts/Refs";
 
 function App() {
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
 
   // useEffect(() => {
   //   console.log("Executando a função useEffect...");
@@ -25,8 +25,8 @@ function App() {
     <>
       <Header />
       <Tasks />
-
-      <button onClick={() => setToggle(!toggle)}>Toggle</button>
+      <Refs />
+      {/* <button onClick={() => setToggle(!toggle)}>Toggle</button> */}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useRef} from "react";
 
 export const Refs: React.FC = () => {
   const inputNameRef = useRef<HTMLInputElement>(null); // { current: null }

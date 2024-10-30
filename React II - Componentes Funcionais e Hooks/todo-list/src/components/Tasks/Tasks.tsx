@@ -1,15 +1,11 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import styles from "./styles.module.scss";
-
-interface Task {
-  title: string;
-  done: boolean;
-  id: number;
-}
+import { TasksContext } from "../../context/TasksContext";
 
 export const Tasks: React.FC = () => {
   const [taskTitle, setTaskTitle] = useState("");
-  const [tasks, setTasks] = useState([] as Task[]);
+
+  const { tasks, setTasks, handleToggleTaskStatus } = useContext(TasksContext);
 
   /*
     [
@@ -37,13 +33,8 @@ export const Tasks: React.FC = () => {
     setTaskTitle("");
   }
 
-  useEffect(() => {
-    const tasksOnLocalStorage = localStorage.getItem("tasks");
-
-    if (tasksOnLocalStorage) {
-      setTasks(JSON.parse(tasksOnLocalStorage));
-    }
-  }, []);
+  // Utilizar o filter para remover a tarefa do array de tarefas
+  function handleRemoveTask(taskId: string){}
 
   return (
     <section className={styles.container}>
@@ -66,8 +57,19 @@ export const Tasks: React.FC = () => {
         {tasks.map((task) => {
           return (
             <li key={task.id}>
-              <input type="checkbox" id={`task-${task.id}`} />
-              <label htmlFor={`task-${task.id}`}>{task.title}</label>
+              <input
+                type="checkbox"
+                id={`task-${task.id}`}
+                onChange={() => handleToggleTaskStatus(task.id)}
+              />
+              <label
+                htmlFor={`task-${task.id}`}
+                className={task.done ? styles.done : ""}
+              >
+                {task.title}
+              </label>
+
+              <button>Remover</button>
             </li>
           );
         })}
